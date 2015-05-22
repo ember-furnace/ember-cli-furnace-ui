@@ -24,12 +24,13 @@ export default Window.extend({
 		return 'dialog-content';
 	}),
 	
-	dialogButtons: Ember.computed(function(key,value) {
+	dialogButtons: Ember.computed('buttons',function(key,value) {
 		var buttons=Ember.A();
-		for(var action in this.buttons) {
+		var _buttons=this.get('buttons');
+		for(var action in _buttons) {
 			buttons.pushObject({
 				action: action,
-				caption : this.buttons[action]
+				caption : _buttons[action]
 			});
 		}
 		return buttons;

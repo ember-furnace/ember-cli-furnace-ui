@@ -3,7 +3,7 @@
 {{#if buttons}}
 <dialog-buttons>
 	{{#each button in dialogButtons}}
-		<button {{action button.action this}}>{{i18n button.caption}}</button>
+		<button {{action 'click' button.action}}>{{i18n button.caption}}</button>
 	{{/each}}
 </dialog-buttons>
 {{/if}}
