@@ -5,9 +5,13 @@
  * @submodule furnace-ui
  */
 import Ember from 'ember';
-import ApplicationModal from './components/application-modal';
+import WindowContainer from './components/window-container';
+import WindowManager from './services/window-manager';
 
+import Window from './components/window';
 import Dialog from './components/dialog';
+import ModalDialog from './components/modal-dialog';
+import CommonDialog from './components/common-dialog';
 
 /**
  * @class UI
@@ -16,9 +20,17 @@ import Dialog from './components/dialog';
  */
 export default Ember.Namespace.extend( {	
 	
-	ApplicationModal : ApplicationModal,
+	WindowContainer : WindowContainer,
+	
+	WindowManager : WindowManager,
+	
+	Window : Window,
 	
 	Dialog : Dialog,
+
+	ModalDialog : ModalDialog,
+	
+	CommonDialog : CommonDialog,
 	
 	dialog : function(options) {
 		

@@ -1,26 +1,32 @@
 import Ember from 'ember';
 import showDialog from 'furnace-ui/utils/dialog-show';
+import UI from 'furnace-ui';
 
 export function initialize(container, application) {
 	var applicationViewFactory = container.lookupFactory('view:application');
 	applicationViewFactory.reopen({
 		didInsertElement : function() {
 			this._super();
-			if(!this.container.lookup('ui:modal-container')) {
-				var applicationModal = this.container.lookup('component:application-modal');
-				applicationModal.append();
+			var service =this.container.lookup('service:window-manager');
+			if(!service.get('hasContainer')) {
+				var windowContainer = this.container.lookup('component:window-container');
+				windowContainer.append();
 			}
 		}
 	});
 	
-	application.register('ui:dialog-show-modal', showDialog,{instantiate:false});
 	
-	application.register('ui:modal-dialogs', Ember.A(),{instantiate:false});
+	application.register('component:window-container', UI.WindowContainer);
+	application.register('service:window-manager', UI.WindowManager);
+	
+	application.register('dialog:common', UI.CommonDialog);
+	
+	application.register('ui:dialog-show', showDialog,{instantiate:false});
 	
   
-	application.inject('route', 'showModal', 'ui:dialog-show-modal');
-	application.inject('component', 'showModal', 'ui:dialog-show-modal');
-	application.inject('controller', 'showModal', 'ui:dialog-show-modal');
+	application.inject('route', 'showDialog', 'ui:dialog-show');
+	application.inject('component', 'showDialog', 'ui:dialog-show');
+	application.inject('controller', 'showDialog', 'ui:dialog-show');
 };
 
 export default {

@@ -1,44 +1,14 @@
 import Ember from 'ember';
+import Window from './window';
 
-export default Ember.Component.extend({
-	tagName : 'dialog',
+export default Window.extend({
 	
-	defaultLayout : 'dialog',
-	
-	attributeBindings : ['style'],
-	
-	classNameBindings: ['_typeClass'],
 	
 	classNames : ['dialog'],
 	
-	units: 'px',
+	width:380,
 	
-	width:640,
-	
-	height:480,
-	
-	actions:  {
-		close : function() {
-			var dialogs=this.container.lookup('ui:modal-dialogs');
-			dialogs.removeObject(this);
-		}
-	},
-		
-	_typeClass : Ember.computed(function() {
-		return Ember.String.camelize(this.constructor.typeKey);
-	}),
-	
-	contentView : Ember.View.extend({
-		tagName : 'dialog-content'
-	}),
-	
-	style : Ember.computed('width,height',function() {
-		var width='width:'+this.get('width')+this.get('units')+';';
-		var height='height:'+this.get('height')+this.get('units')+';';
-		var left='margin-left:-'+(this.get('width')/2)+this.get('units')+';';
-		var top='margin-top:-'+(this.get('height')/2)+this.get('units')+';';
-		return (width+height+top+left).htmlSafe();
-	}),
+	height:240,
 	
 	contentLayout : Ember.computed( function() {
 		var layoutName=null;
@@ -54,17 +24,14 @@ export default Ember.Component.extend({
 		return 'dialog-content';
 	}),
 	
-	layoutName : Ember.computed( function() {
-		var layoutName=null;
-		if(!this.get('container')) {
-			return null;
+	dialogButtons: Ember.computed(function(key,value) {
+		var buttons=Ember.A();
+		for(var action in this.buttons) {
+			buttons.pushObject({
+				action: action,
+				caption : this.buttons[action]
+			});
 		}
-		if(this.constructor.typeKey) {
-			layoutName=this.constructor.typeKey.replace(/\./g,'/')+'/dialog-layout';
-			if(this.get('container').lookup('template:'+layoutName)) {
-				return layoutName;
-			}
-		}
-		return this.get('defaultLayout');
-	})
+		return buttons;
+	}),
 });
