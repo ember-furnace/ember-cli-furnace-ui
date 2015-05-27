@@ -24,7 +24,7 @@ export default Ember.Component.extend({
 	
 	top: null,
 	
-	position : '',
+	position : 'centered',
 	
 	service : null,
 	

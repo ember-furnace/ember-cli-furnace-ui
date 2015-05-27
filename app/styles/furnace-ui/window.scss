@@ -15,6 +15,7 @@ window {
 	&.centered {
 		top:50%;
 		left:50%;
+		position:fixed;
 	}
 	&.visible {
 		opacity:1;
