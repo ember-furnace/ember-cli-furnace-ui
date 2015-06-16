@@ -17,6 +17,10 @@ export default ModalDialog.extend({
 		this._super();
 	},
 	
+	text : '',
+	
+	textAttributes : [],
+	
 	yes : null,
 	
 	no : null,
