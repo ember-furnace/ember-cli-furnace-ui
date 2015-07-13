@@ -1,0 +1,151 @@
+
+form {
+	messages {
+		display:block;
+		width:300px;
+		min-height:23px; 
+		background:#eee;
+		padding:2px 5px;
+		border:1px solid #ccc;
+		message {
+			position:relative;
+			display:block;
+			overflow:hidden;
+			max-height:100px;
+			transition: all .5s ease;
+			padding:2px 0 2px;
+			
+			&.hidden {
+				padding:0;
+				max-height:0;
+				overflow:hidden;
+			}
+		}
+		
+		&.hidden {
+			opacity:0;
+		}	
+	} 
+}
+
+control {
+	messages,
+	&>input,&>select,&>textarea {
+		transition: all .5s ease;
+	}
+	&>messages {
+		position:absolute;
+		
+		right:-320px;
+	
+		
+		
+		&:before {
+			content: "";
+			display: block;
+			position: absolute;
+			left: -7px;
+			margin-top: -10px;
+			top: 15px;
+			height: 0;
+			border-right: 6px solid #ccc;
+			border-top: 6px solid transparent;
+			border-bottom: 6px solid transparent;
+			border-left: none;
+			z-index:-1;
+		}
+		&:after {
+			content: "";
+			display: block;
+			position: absolute;
+			left: -5px;
+			margin-top: -9px;
+			top: 15px;
+			height: 0;
+			border-right: 5px solid #eee;
+			border-top: 5px solid transparent;
+			border-bottom: 5px solid transparent;
+			border-left: none;
+		}
+	}
+	
+	&.valid.focus>input {
+		box-shadow: #aaa;
+	}
+	
+	
+	&.notice {	
+		&>messages {
+			border-color: $furnace-forms-notice;
+		}
+		&>input,&>select,&>textarea {
+			border: 1px solid $furnace-forms-notice;
+		}		
+	}
+	messages message.notice {
+		color:$furnace-forms-notice;
+	}
+		
+	&.warning {	
+		&>messages {
+			border-color: $furnace-forms-warning;
+		}
+		&>input,&>select,&>textarea {
+			border: 1px solid $furnace-forms-warning;
+		}		
+	}
+	messages message.warning {
+		color:$furnace-forms-warning;
+	}
+	
+	&.error {	
+		&>messages {
+			border-color: $furnace-forms-error-blur;
+		}
+		&>input,&>select,&>textarea {
+			border: 1px solid $furnace-forms-error-blur;
+		}		
+	}
+	
+	messages message.error {
+		color:$furnace-forms-error-blur;
+	}
+	
+	&.valid.focus {
+		input,select,textarea {
+			outline-color: $furnace-forms-valid;
+		}
+	}
+	
+	&.invalid.focus {
+		input,select,textarea {
+			outline-color: $furnace-forms-error-focus;
+		}
+	}
+	
+	&.error.focus {
+		&>messages {
+			border-color: $furnace-forms-error-focus;
+		}
+		&>input,&>select,&>textarea {
+			border: 1px solid $furnace-forms-error-focus;
+		}	
+	}
+	&.focus>messages message.error {
+		color: $furnace-forms-error-focus;
+	}
+
+	
+	
+}
+
+
+
+/*
+control.valid {
+	box-shadow: 0px 0px 5px 0px rgba(55,208,68,1);
+}
+control.invalid {
+	box-shadow: 0px 0px 5px 0px rgba(208,55,68,1);
+}
+*/

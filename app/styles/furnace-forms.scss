@@ -1,0 +1,87 @@
+@import 'furnace-forms/vars.scss';
+@import 'furnace-forms/validation.scss';
+form {
+	margin-bottom:20px;
+}
+form,panel,controls,actions {
+	display:block;
+	position:relative;
+	clear:both;
+}
+form,panel {
+	& > messages {
+		clear:both;
+	}
+}
+control {
+	position:relative;
+	margin : 2px 0;
+	
+	options {
+		float:left;
+	}
+}
+
+actions > control {
+	float:left
+}
+form:after {
+	display:block;
+	content: "";
+	clear:both;
+}
+
+controls > control {
+	clear:both;
+	float:left;
+	
+	label,input,select,textarea {
+		float:left;
+		
+	}
+	
+	label,input,textarea,select {
+		width:200px;
+		height: 23px;
+		line-height:21px;
+		padding: 2px 5px;
+	} 
+	input,textarea,select {
+		width:300px;
+	}
+	select {
+		padding: 2px 0px;
+	}
+	
+	input,select,textarea {
+		clear:right;
+		border:1px solid #ccc;
+		border-radius:2px;
+		&::-webkit-input-placeholder {
+			font-style:italic;
+		}
+		&:-moz-placeholder {
+			font-style:italic;
+		}
+		&::-moz-placeholder{
+			font-style:italic;
+		}
+		&:-ms-input-placeholder {
+		    font-style:italic;
+		}
+	}
+	
+	input[type='radio'],
+	input[type='checkbox'] {
+		clear:left;
+		width: 15px;
+		height:15px;
+	}
+	
+}
+
+control.disabled {
+	label,select,input,textarea,button {
+		color : #ccc;
+	}
+}
