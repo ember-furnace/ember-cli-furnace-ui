@@ -69,8 +69,10 @@ control {
 		}
 	}
 	
-	&.valid.focus>input {
-		box-shadow: #aaa;
+	&.valid.focus {
+		&>input,&>select,&>textarea {
+			box-shadow: #aaa;
+		}
 	}
 	
 	

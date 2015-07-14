@@ -70,12 +70,19 @@ controls > control {
 		    font-style:italic;
 		}
 	}
-	
+	control[type='checkOption'] > label {
+		width:auto;
+		height:auto;
+	}
 	input[type='radio'],
 	input[type='checkbox'] {
 		clear:left;
 		width: 15px;
 		height:15px;
+	}
+	
+	textarea {
+		height:150px;
 	}
 	
 }
