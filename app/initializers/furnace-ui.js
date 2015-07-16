@@ -32,10 +32,14 @@ export function initialize(container, application) {
   
 	application.inject('route', 'handleException', 'ui:handle-exception');
 	application.inject('controller', 'handleException', 'ui:handle-exception');
+	application.inject('control', 'handleException', 'ui:handle-exception');
+	application.inject('form', 'handleException', 'ui:handle-exception');
 	
 	application.inject('route', 'showDialog', 'ui:dialog-show');
 	application.inject('component', 'showDialog', 'ui:dialog-show');
 	application.inject('controller', 'showDialog', 'ui:dialog-show');
+	application.inject('control', 'showDialog', 'ui:dialog-show');
+	application.inject('form', 'showDialog', 'ui:dialog-show');
 };
 
 export default {

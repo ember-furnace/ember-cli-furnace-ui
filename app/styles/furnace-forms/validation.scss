@@ -7,7 +7,7 @@ form {
 		background:#eee;
 		padding:2px 5px;
 		border:1px solid #ccc;
-		z-index:1;
+		
 		message {
 			position:relative;
 			display:block;
@@ -22,7 +22,9 @@ form {
 				overflow:hidden;
 			}
 		}
-		
+		&.visible {
+			z-index:1;
+		}
 		&.hidden {
 			opacity:0;
 		}	
