@@ -5,11 +5,15 @@ export default Ember.Component.extend({
 		
 //	classNameBindings: ['showClass'],
 	
-	overlayClass: Ember.computed('windows.length',function() {
-		return this.get('windows').findBy('modal',true) ? 'visible' : 'hidden';
+	overlayClass: Ember.computed('windows.length',{
+		get : function() {
+			return this.get('windows').findBy('modal',true) ? 'visible' : 'hidden';
+		}
 	}),
-	overlayStyle : Ember.computed('windows',function() {
-		return ('z-index:1;').htmlSafe();
+	overlayStyle : Ember.computed('windows',{
+		get : function() {
+			return ('z-index:1;').htmlSafe();
+		}
 	}),
 	
 	windows: null,

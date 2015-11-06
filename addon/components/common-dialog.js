@@ -29,31 +29,35 @@ export default ModalDialog.extend({
 	
 	cancel : null,
 	
-	buttons : Ember.computed('yes,no,ok,cancel,close',function() {
-		var buttons={};
-		if(this.yes) 
-			buttons.yes='yes';
-		if(this.no) 
-			buttons.no='no';
-		if(this.ok) 
-			buttons.ok='ok';
-		if(this.cancel) 
-			buttons.cancel='cancel';
-		return buttons;
+	buttons : Ember.computed('yes,no,ok,cancel,close',{
+		get : function() {
+			var buttons={};
+			if(this.yes) 
+				buttons.yes='yes';
+			if(this.no) 
+				buttons.no='no';
+			if(this.ok) 
+				buttons.ok='ok';
+			if(this.cancel) 
+				buttons.cancel='cancel';
+			return buttons;
+		}
 	}),
 	
-	contentLayout : Ember.computed( function() {
-		var layoutName=null;
-		if(!this.get('container')) {
-			return null;
-		}
-		if(this.constructor.typeKey) {
-			layoutName=this.constructor.typeKey.replace(/\./g,'/')+'/dialog';
-			if(this.get('container').lookup('template:'+layoutName)) {
-				return layoutName;
+	contentLayout : Ember.computed({
+		get : function() {
+			var layoutName=null;
+			if(!this.get('container')) {
+				return null;
 			}
+			if(this.constructor.typeKey) {
+				layoutName=this.constructor.typeKey.replace(/\./g,'/')+'/dialog';
+				if(this.get('container').lookup('template:'+layoutName)) {
+					return layoutName;
+				}
+			}
+			return 'common-dialog-content';
 		}
-		return 'common-dialog-content';
 	}),
 
 	

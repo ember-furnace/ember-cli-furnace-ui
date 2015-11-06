@@ -14,10 +14,12 @@ export default Ember.Service.extend( {
 		
 	},
 	
-	hasContainer : Ember.computed('windowContainer',function() {
-		if(this.get('windowContainer')) 
-			return true;
-		return false;
+	hasContainer : Ember.computed('windowContainer',{
+		get : function() {
+			if(this.get('windowContainer')) 
+				return true;
+			return false;
+		}
 	}),
 	
 	windows : null,
