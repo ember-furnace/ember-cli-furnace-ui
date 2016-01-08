@@ -6,12 +6,14 @@
  */
 import Ember from 'ember';
 import WindowContainer from './components/window-container';
+import WindowDecorator from './components/window-decorator';
+import WindowContentDecorator from './components/window-content-decorator';
 import WindowManager from './services/window-manager';
 
-import Window from './components/window';
-import Dialog from './components/dialog';
-import ModalDialog from './components/modal-dialog';
-import CommonDialog from './components/common-dialog';
+import Window from './windows/window';
+import Dialog from './windows/dialog';
+import ModalDialog from './windows/modal-dialog';
+import CommonDialog from './windows/common-dialog';
 
 /**
  * @class UI
@@ -21,6 +23,10 @@ import CommonDialog from './components/common-dialog';
 export default Ember.Namespace.extend( {	
 	
 	WindowContainer : WindowContainer,
+
+	WindowDecorator : WindowDecorator,
+
+	WindowContentDecorator : WindowContentDecorator,
 	
 	WindowManager : WindowManager,
 	

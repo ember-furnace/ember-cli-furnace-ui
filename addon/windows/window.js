@@ -1,16 +1,8 @@
 import Ember from 'ember';
-import Window from './window';
 
-export default Ember.Component.extend({
-	tagName : 'window',
+export default Ember.Object.extend(Ember.ActionHandler,{
 	
-	defaultLayout : 'window',
-	
-	attributeBindings : ['style'],
-	
-	classNameBindings: ['_typeClass','_visible','position'],
-	
-	classNames : [],
+	decorator : null,
 	
 	units: 'px',
 	
@@ -26,7 +18,7 @@ export default Ember.Component.extend({
 	
 	position : 'centered',
 	
-	service : null,
+	service : Ember.inject.service('window-manager'),
 	
 	modal : false,
 	
@@ -40,10 +32,6 @@ export default Ember.Component.extend({
 		get : function() {
 			return Ember.String.camelize(this.constructor.typeKey);
 		}
-	}),
-	
-	contentView : Ember.View.extend({
-		tagName : 'window-content'
 	}),
 	
 	init : function() {
@@ -76,6 +64,10 @@ export default Ember.Component.extend({
 			return (width+height+top+left+zIndex).htmlSafe();
 		}
 	}),
+
+	defaultLayout : 'window',
+	
+	contentDecorator: 'window-content-decorator',
 	
 	contentLayout : Ember.computed({
 		get : function() {
@@ -113,22 +105,17 @@ export default Ember.Component.extend({
 		this.service.close(this);
 	},
 	
-	show : function() {
-		if(this.get('left')===null)
-			this.set('left',this.get('targetObject.width')/2-this.get('width')/2);
-		if(this.get('top')===null)
-			this.set('top',this.get('targetObject.height')/2-this.get('height')/2);
+	show : function() {		
 		this.set('visible',true);
 	},
+	
+	decoratorObserver: Ember.observer('decorator',function() {
+		if(this.visible && this.decorator)
+			this.decorator.center(this.get('left')===null, this.get('top')===null);
+	}),
 
 	hide: function() {
 		this.set('visible',false);
 	},
 	
-	ready : function() {		
-	},
-	
-	didInsertElement : function() {
-		this.ready();
-	}
 });

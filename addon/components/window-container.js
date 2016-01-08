@@ -5,18 +5,23 @@ export default Ember.Component.extend({
 		
 //	classNameBindings: ['showClass'],
 	
-	overlayClass: Ember.computed('windows.length',{
-		get : function() {
-			return this.get('windows').findBy('modal',true) ? 'visible' : 'hidden';
-		}
-	}),
-	overlayStyle : Ember.computed('windows',{
-		get : function() {
-			return ('z-index:1;').htmlSafe();
-		}
-	}),
+	overlayClass: 'hidden',
 	
-	windows: null,
+	overlayStyle: ('z-index:1;').htmlSafe(),
+	
+	
+	windowOverlayObserver: Ember.observer('windows.@each.visible,window.@each.modal',function(){
+		
+		this.set('overlayStyle',('z-index:1;').htmlSafe());		
+		if(this.get('windows').findBy('modal',true)) {
+			this.set('overlayClass','visible');
+		} else{
+			this.set('overlayClass','hidden');
+		}
+	}),
+	 
+	
+	windows: Ember.computed.alias('service.windows'),
 	
 	width:Ember.computed.alias('_width').readOnly(),
 
@@ -26,13 +31,13 @@ export default Ember.Component.extend({
 	
 	_height: 0,
 	
-	_service: null,
+	service: Ember.inject.service('window-manager'),
 	
 	init: function() {
 //		var application=this.container.lookup('application:main');		
 //		application.register('ui:window-container', this,{ instantiate: false });		
-		this._service=this.container.lookup('service:window-manager');
-		this._service.registerContainer(this);
+//		this._service=this.container.lookup('service:window-manager');
+		this.get('service').registerContainer(this);
 //		this.set('windows',this.container.lookup('ui:windows'));
 		this._super();
 	},

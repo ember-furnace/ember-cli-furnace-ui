@@ -3,7 +3,7 @@ import showDialog from 'furnace-ui/utils/dialog-show';
 import handleException from 'furnace-ui/utils/handle-exception';
 import UI from 'furnace-ui';
 export function initialize(instance) {	
-	var applicationViewFactory = instance.container.lookupFactory('view:application');
+	var applicationViewFactory = instance._lookupFactory('view:application');
 	if(typeof applicationViewFactory==='function') {
 		applicationViewFactory.reopen({
 			didInsertElement : function() {

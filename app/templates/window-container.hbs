@@ -1,4 +1,4 @@
-<modal-overlay {{bind-attr class=overlayClass style=overlayStyle}}></modal-overlay>
-{{#each window in windows}}
-	{{view window}}
+<modal-overlay class={{overlayClass}} style={{overlayStyle}}></modal-overlay>
+{{#each windows as |window|}}
+	{{window-decorator window=window}}
 {{/each}}

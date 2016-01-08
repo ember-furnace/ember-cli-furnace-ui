@@ -2,8 +2,8 @@
 
 {{#if buttons}}
 <dialog-buttons>
-	{{#each button in dialogButtons}}
-		<button {{action 'click' button.action}}>{{i18n button.caption}}</button>
+	{{#each dialogButtons as |button|}}
+		<button class={{button.action}} {{action 'click' button.action}}>{{i18n button.caption}}</button>
 	{{/each}}
 </dialog-buttons>
 {{/if}}

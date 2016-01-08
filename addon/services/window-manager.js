@@ -5,9 +5,8 @@ export default Ember.Service.extend( {
 	
 	registerContainer : function(container) {
 		this.set('windowContainer',container);
-		container.set('windows',this.windows);
 		container.ready=function() {
-			this.windows.forEach(function(window){
+			this.get('windows').forEach(function(window){
 				window.show();
 			});
 		}
@@ -36,11 +35,8 @@ export default Ember.Service.extend( {
 	},
 		
 	open : function(window) {
-		window.set('service',this);
 		if(this.windowContainer) {
-			window.ready=function() {
-				this.show();
-			}
+			window.show();
 		}
 		this.windows.pushObject(window);
 	}
