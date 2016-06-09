@@ -59,7 +59,7 @@ export default Ember.Component.extend({
 		this._updateSize();
 		this.$(window).on('resize',this,this._resizeHandler);
 		this._super();
-		this.ready();
+		Ember.run.schedule('afterRender',this,this.ready);
 	},
 	
 	destroy: function() {
