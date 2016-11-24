@@ -34,11 +34,7 @@ export default Ember.Component.extend({
 	service: Ember.inject.service('window-manager'),
 	
 	init: function() {
-//		var application=this.container.lookup('application:main');		
-//		application.register('ui:window-container', this,{ instantiate: false });		
-//		this._service=this.container.lookup('service:window-manager');
 		this.get('service').registerContainer(this);
-//		this.set('windows',this.container.lookup('ui:windows'));
 		this._super();
 	},
 	

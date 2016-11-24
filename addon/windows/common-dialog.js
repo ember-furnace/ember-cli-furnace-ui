@@ -1,5 +1,5 @@
 import ModalDialog from './modal-dialog';
-
+import Ember from 'ember';
 export default ModalDialog.extend({
 	
 	classNames : ['common-dialog'],
@@ -47,12 +47,12 @@ export default ModalDialog.extend({
 	contentLayout : Ember.computed({
 		get : function() {
 			var layoutName=null;
-			if(!this.get('container')) {
+			if(!Ember.getOwner(this)) {
 				return null;
 			}
 			if(this.constructor.typeKey) {
 				layoutName=this.constructor.typeKey.replace(/\./g,'/')+'/dialog';
-				if(this.get('container').lookup('template:'+layoutName)) {
+				if(Ember.getOwner(this).lookup('template:'+layoutName)) {
 					return layoutName;
 				}
 			}

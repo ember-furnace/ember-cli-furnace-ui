@@ -8,9 +8,9 @@ export function initialize(instance) {
 		applicationViewFactory.reopen({
 			didInsertElement : function() {
 				this._super();
-				var service =this.container.lookup('service:window-manager');
+				var service =Ember.getOwner(this).lookup('service:window-manager');
 				if(!service.get('hasContainer')) {
-					var windowContainer = this.container.lookup('component:window-container');
+					var windowContainer = Ember.getOwner(this).lookup('component:window-container');
 					windowContainer.append();
 				}
 			}

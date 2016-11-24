@@ -41,8 +41,9 @@ export default Ember.Object.extend(Ember.ActionHandler,{
 	
 	_visible : Ember.computed('visible',{
 		get : function() {
-			if(this.get('visible')) 
+			if(this.get('visible'))  {
 				return 'visible';
+			}
 			return 'hidden';
 		}
 	}),
@@ -72,12 +73,12 @@ export default Ember.Object.extend(Ember.ActionHandler,{
 	contentLayout : Ember.computed({
 		get : function() {
 			var layoutName=null;
-			if(!this.get('container')) {
+			if(!Ember.getOwner(this)) {
 				return null;
 			}
 			if(this.constructor.typeKey) {
 				layoutName=this.constructor.typeKey.replace(/\./g,'/')+'/window';
-				if(this.get('container').lookup('template:'+layoutName)) {
+				if(Ember.getOwner(this).lookup('template:'+layoutName)) {
 					return layoutName;
 				}
 			}
@@ -88,12 +89,12 @@ export default Ember.Object.extend(Ember.ActionHandler,{
 	layoutName : Ember.computed({
 		get : function() {
 			var layoutName=null;
-			if(!this.get('container')) {
+			if(!Ember.getOwner(this)) {
 				return null;
 			}
 			if(this.constructor.typeKey) {
 				layoutName=this.constructor.typeKey.replace(/\./g,'/')+'/window-layout';
-				if(this.get('container').lookup('template:'+layoutName)) {
+				if(Ember.getOwner(this).lookup('template:'+layoutName)) {
 					return layoutName;
 				}
 			}
@@ -110,8 +111,9 @@ export default Ember.Object.extend(Ember.ActionHandler,{
 	},
 	
 	decoratorObserver: Ember.observer('decorator',function() {
-		if(this.visible && this.decorator)
+		if(this.visible && this.decorator) {
 			this.decorator.center(this.get('left')===null, this.get('top')===null);
+		}
 	}),
 
 	hide: function() {
