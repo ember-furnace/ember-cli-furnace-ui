@@ -3,20 +3,21 @@ import showDialog from 'furnace-ui/utils/dialog-show';
 import handleException from 'furnace-ui/utils/handle-exception';
 import UI from 'furnace-ui';
 export function initialize(instance) {	
-	var applicationViewFactory = instance._lookupFactory('view:application');
+	var applicationViewFactory = instance._lookupFactory('view:toplevel');
+	
 	if(typeof applicationViewFactory==='function') {
 		applicationViewFactory.reopen({
+			tagName:'application',
 			didInsertElement : function() {
 				this._super();
 				var service =Ember.getOwner(this).lookup('service:window-manager');
 				if(!service.get('hasContainer')) {
-					var windowContainer = Ember.getOwner(this).lookup('component:window-container');
-					windowContainer.append();
+					Ember.warn('furnace-ui: You forgot to add the window-container to your template.');
 				}
 			}
 		});
 	} else {
-		Ember.warn('furnace-ui: Application view is virtual, cannot inject window-container. Make sure you append it in your template.');
+		Ember.warn('furnace-ui: Cannot inject to toplevel view. Make sure you append window-container in your template.');
 	}	
 };
 

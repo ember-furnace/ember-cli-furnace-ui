@@ -2,7 +2,7 @@
 
 {{#if buttons}}
 <dialog-buttons>
-	{{#each button in dialogButtons}}
+	{{#each dialogButtons as |button|}}
 		<button {{action button.action this}}>{{i18n button.caption}}</button>
 	{{/each}}
 </dialog-buttons>
