@@ -14,6 +14,7 @@ import Window from './windows/window';
 import Dialog from './windows/dialog';
 import ModalDialog from './windows/modal-dialog';
 import CommonDialog from './windows/common-dialog';
+import ErrorDialog from './dialogs/error';
 
 /**
  * @class UI
@@ -37,6 +38,8 @@ export default Ember.Namespace.extend( {
 	ModalDialog : ModalDialog,
 	
 	CommonDialog : CommonDialog,
+	
+	ErrorDialog : ErrorDialog,
 	
 	dialog : function(options) {
 		
