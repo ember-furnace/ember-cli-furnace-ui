@@ -37,8 +37,18 @@ export default Ember.Service.extend( {
 	open : function(window) {
 		if(this.windowContainer) {
 			window.show();
-		}
+		} else {
+			Ember.run.later(this,this._checkContainerAvailability)
+		} 
 		this.windows.pushObject(window);
+	},
+	
+	_checkContainerAvailability() {
+		if(!this.get('hasContainer')) {
+			Ember.warn('furnace-ui: It seems you forgot to add the window-container to your template...',false,{
+				id: 'furnace-ui:no-window-container'
+			});
+		}
 	}
 
 })

@@ -4,7 +4,6 @@ import handleException from 'furnace-ui/utils/handle-exception';
 import UI from 'furnace-ui';
 
 export function initialize(application) {
-	
 	application.register('component:window-container', UI.WindowContainer);
 	application.register('component:window-decorator', UI.WindowDecorator);
 	application.register('component:window-content-decorator', UI.WindowContentDecorator);

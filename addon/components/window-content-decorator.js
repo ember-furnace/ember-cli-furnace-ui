@@ -5,7 +5,7 @@ export default Ember.Component.extend(Ember._ProxyMixin,{
 		
 	init : function() {
 		this._super();
-		this.set('target',this.get('targetObject'));
-		this.set('content',this.get('targetObject.window'));
+		this.set('target',this.get('_targetObject'));
+		this.set('content',this.get('_targetObject.window'));
 	}
 });
