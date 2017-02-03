@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export default Ember.Object.extend(Ember.ActionHandler,{
+export default Ember.Object.extend(Ember.ActionHandler,Ember.Evented,{
 	
 	decorator : null,
 	
@@ -103,11 +103,15 @@ export default Ember.Object.extend(Ember.ActionHandler,{
 	}),
 	
 	close: function() {
+		this.trigger('willClose');
 		this.service.close(this);
+		Ember.run.scheduleOnce('afterRender',this,this.trigger,'didClose');
 	},
 	
 	show : function() {		
+		this.trigger('willShow');
 		this.set('visible',true);
+		Ember.run.scheduleOnce('afterRender',this,this.trigger,'didShow');
 	},
 	
 	decoratorObserver: Ember.observer('decorator',function() {
@@ -117,7 +121,15 @@ export default Ember.Object.extend(Ember.ActionHandler,{
 	}),
 
 	hide: function() {
+		this.trigger('willHide');
 		this.set('visible',false);
+		Ember.run.scheduleOnce('afterRender',this,this.trigger,'didHide');
 	},
 	
+	_focus:Ember.on('didInsertContent',function(decorator) {
+		var list=decorator.$('input, button');
+		if(list.length) {
+			Ember.$(list[0]).focus();
+		}
+	})
 });
