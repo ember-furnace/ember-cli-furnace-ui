@@ -127,7 +127,7 @@ export default Ember.Object.extend(Ember.ActionHandler,Ember.Evented,{
 	},
 	
 	_focus:Ember.on('didInsertContent',function(decorator) {
-		var list=decorator.$('input, button');
+		var list=decorator.$('input, button, select, textarea');
 		if(list.length) {
 			Ember.$(list[0]).focus();
 		}
