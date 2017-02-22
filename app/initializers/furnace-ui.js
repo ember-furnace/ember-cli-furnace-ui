@@ -27,6 +27,8 @@ export function initialize(application) {
 	application.inject('service', 'showDialog', 'ui:dialog-show');
 	application.inject('control', 'showDialog', 'ui:dialog-show');
 	application.inject('form', 'showDialog', 'ui:dialog-show');
+	application.inject('panel', 'showDialog', 'ui:dialog-show');
+	application.inject('input', 'showDialog', 'ui:dialog-show');
 };
 
 export default {
