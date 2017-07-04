@@ -10,7 +10,7 @@ export default function showDialog(dialog,options,owner) {
 	
 	dialog=dialog || this;
 	dialog=lookup(dialog,owner,options);
-	dialog=dialog.create(options);
+	dialog=dialog.create(owner.ownerInjection(),options);
 	if(dialog) {
 		service.open(dialog);
 	}
