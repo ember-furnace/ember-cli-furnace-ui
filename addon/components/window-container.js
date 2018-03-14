@@ -19,7 +19,6 @@ export default Ember.Component.extend({
 			this.set('overlayClass','hidden');
 		}
 	}),
-	 
 	
 	windows: Ember.computed.alias('service.windows'),
 	

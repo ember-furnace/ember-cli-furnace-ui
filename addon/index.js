@@ -41,8 +41,4 @@ export default Ember.Namespace.extend( {
 	
 	ErrorDialog : ErrorDialog,
 	
-	dialog : function(options) {
-		
-	}
-	
 }).create();

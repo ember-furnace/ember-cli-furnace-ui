@@ -50,7 +50,7 @@ export default Ember.Object.extend(Ember.ActionHandler,Ember.Evented,{
 	
 	style : Ember.computed('width,height,left,top',{
 		get : function() {
-			var width,height,left,top,zIndex,visible,units=this.get('units')+';';
+			var width,height,left,top,zIndex,units=this.get('units')+';';
 			if(this.position==='centered'){			
 				left='margin-left:-'+(this.get('width')/2)+units;
 				top='margin-top:-'+(this.get('height')/2)+units;

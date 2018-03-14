@@ -27,7 +27,7 @@ export default Window.extend({
 	}),
 	
 	dialogButtons: Ember.computed('buttons',{
-		get : function(key,value) {
+		get : function() {
 			var buttons=Ember.A();
 			var _buttons=this.get('buttons');
 			for(var action in _buttons) {

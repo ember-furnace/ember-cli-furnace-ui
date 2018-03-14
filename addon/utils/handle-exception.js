@@ -4,8 +4,9 @@ export default function handleException(error,retry) {
 		case 401:
 			// 	don't show unauthorized errors.
 			if(this instanceof Ember.Route) {
-				break;	
+				break;
 			}
+			/* falls through */
 		default:
 			var message;
 			var details;
@@ -21,7 +22,16 @@ export default function handleException(error,retry) {
 			} else {
 				message=error.message;
 			}
-			console.error(message+(details ? ": "+details : ''));
+			
+			var config = Ember.getOwner(this).factoryFor('config:environment').class;
+			
+			// Do not log an error in test environment, it might cause confusion in
+			// the tests results
+			// All tests passed will still be marked with a X
+			if(config.environment!=='test') {
+				/* eslint no-console: "off" */
+				console.error(message+(details ? ": "+details : ''));
+			}
 			this.showDialog('error',{
 				error : message,
 				details:details,

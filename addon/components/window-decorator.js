@@ -51,18 +51,18 @@ export default Ember.Component.extend({
 	
 	style : Ember.computed('width,height,left,top',{
 		get : function() {
-			var width,height,left,top,zIndex,visible,units=this.get('units')+';';
-			if(this.get('position')==='centered'){			
+			var width,height,left,top,zIndex,units=this.get('units')+';';
+			if(this.get('position')==='centered'){
 				left='margin-left:-'+(this.get('width')/2)+units;
 				top='margin-top:-'+(this.get('height')/2)+units;
 			}
 			else {			
 				left='left:'+this.get('left')+units;
-				top='top:'+this.get('top')+units;			
+				top='top:'+this.get('top')+units;
 			}
 			width='width:'+this.get('width')+units;
 			height='height:'+this.get('height')+units;
-			zIndex='z-index:1;';		
+			zIndex='z-index:1;';
 			return (width+height+top+left+zIndex).htmlSafe();
 		}
 	}),
